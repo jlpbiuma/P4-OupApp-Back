@@ -15,6 +15,7 @@ function getAllContactsBySeniorID(req, res, next) {
 }
 
 function postContact(req, res, next) {
+    console.log(req.body);
     Contact.create(req.body)
         .then(contacts => res.send(contacts))
         .catch(err => res.send(err))

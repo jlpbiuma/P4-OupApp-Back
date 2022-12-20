@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const bcrypt = require("bcrypt");
 const {
     signup
 } = require('./auth.controller.js')
@@ -16,6 +17,9 @@ function getUserByID(req, res, next) {
 }
 
 function putUserByID(req, res, next) {
+    if (req.body.password != null) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+    }
     User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
         .then(user => res.send(user))
         .catch(err => res.send(err))
@@ -44,6 +48,9 @@ function postFamilyMemberByClientID(req, res, next) {
 }
 
 function putFamilyMemberBySeniorID(req, res, next) {
+    if (req.body.password != null) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+    }
     User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
         .then(users => res.send(users))
         .catch(err => res.send(err))

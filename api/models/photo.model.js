@@ -1,13 +1,17 @@
 const mongoose = require('mongoose')
 
 const photosSchema = new mongoose.Schema({
-    base: {
+    comment: {
         type: String,
-        required: [true, "Es necesario especificar base de la foto"]
+        required: [true, "Es necesario especificar comentario para la foto"]
     },
-    data: {
+    date: {
+        type: mongoose.Schema.Types.Date,
+        required: [true, "Es necesario especificar url de la foto"]
+    },
+    image:{
         type: String,
-        required: [true, "Es necesario especificar datos de la foto"]
+        required: [true, "Es necesario introducir la URL de la imagen"]
     },
     id_c: {
         type: mongoose.Schema.Types.ObjectId,
